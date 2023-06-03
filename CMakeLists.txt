@@ -13,7 +13,10 @@ set(SFML_BUILD_WINDOW TRUE)
 set(SFML_BUILD_NETWORK FALSE)
 set(SFML_BUILD_AUDIO FALSE)
 
-add_executable(${PROJECT_NAME} main.cpp)
+file(GLOB SOURCES src/*.cpp)
+add_executable(${PROJECT_NAME} ${SOURCES})
+
 include_directories(SFML/include)
+include_directories(include)
 
 target_link_libraries(sfml-example sfml-graphics sfml-window)
