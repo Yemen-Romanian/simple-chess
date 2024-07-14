@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <filesystem>
 
-const auto texture_root = std::filesystem::path("../textures");
+const auto texture_root = std::filesystem::path("textures");
 
 enum class Piece
 {
