@@ -24,5 +24,5 @@ include_directories(../engine/include)
 include_directories(include)
 include_directories(fmt/include)
 
-target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window)
+target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window fmt)
 install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION ${CMAKE_RESULT_BIN_DIR})
