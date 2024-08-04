@@ -2,6 +2,7 @@
 #include <tuple>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics/Rect.hpp>
+#include <fmt/core.h>
 
 #include "chess_board.h"
 #include "piece_sprite.h"
@@ -28,7 +29,7 @@ ChessGame::~ChessGame()
 
 int ChessGame::run()
 {
-    sf::RenderWindow window(sf::VideoMode(DefaultResolution.first, DefaultResolution.second), "Main chess window", sf::Style::Default);
+    sf::RenderWindow window(sf::VideoMode(DefaultResolution.first, DefaultResolution.second), "Main chess window", sf::Style::Fullscreen);
     ChessBoard board;
     sf::Color white(std::get<0>(DefaultWhiteColor), std::get<1>(DefaultWhiteColor), std::get<2>(DefaultWhiteColor));
     sf::Color black(std::get<0>(DefaultBlackColor), std::get<1>(DefaultBlackColor), std::get<2>(DefaultBlackColor));
@@ -52,6 +53,13 @@ int ChessGame::run()
 
             if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                 window.close();
+
+            if (event.type == sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                auto mousePosition = sf::Mouse::getPosition();
+                fmt::println("Clicked in {} {}", mousePosition.x, mousePosition.y);
+                board.processMouseButtonPressedEvent(mousePosition);
+            }
         }
 
         // clear the window with black color
